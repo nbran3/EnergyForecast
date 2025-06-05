@@ -1,0 +1,112 @@
+version: 2
+
+sources:
+ - name: energy_pipeline
+   database: energy-461918
+   schema: staging
+  
+   tables:
+      - name: CPIAUCSL
+
+      - name: FEDFUNDS
+
+      - name: INDPRO
+
+      - name: MCUMFM
+
+      - name: UNRATE
+
+      - name: cdd
+
+      - name: energy
+
+      - name: hdd
+
+      - name: tavg
+
+models:
+  - name: CPIAUCSL
+    description: "Consumer Price Index of the United States"
+    columns:
+      - name: data
+        data_type: string
+        description: ""
+      - name: value
+        data_type: string
+      - name: series_id
+        data_type: string
+  - name: FEDFUNDS
+    description: "Federal Funds Rate (Effective) of the United States"
+    columns:
+        - name: data
+          data_type: string
+        - name: value
+          data_type: string
+        - name: series_id
+          data_type: string
+  - name: INDPRO
+    description: "Industrial Production: Total Index of the United States"
+    columns:
+        - name: data
+          data_type: string
+        - name: value
+          data_type: string
+        - name: series_id
+          data_type: 
+  - name: MCUMFM
+    description: "Manufacturing Capacity Utilization of the United States"
+    columns:
+        - name: data
+          data_type: string
+        - name: value
+          data_type: string
+        - name: series_id
+          data_type: string
+  - name: UNRATE
+    description: "Unemployment Rate of the United States"
+    columns:
+        - name: data
+          data_type: string
+        - name: value
+          data_type: string
+        - name: series_id
+          data_type: string
+  - name: cdd
+    description: "Cooling Degree Days of the United States, missing dates"
+    columns:
+        - name: data
+          data_type: 
+  - name: energy
+    description: "Heating Degree Days of the United States, missing dates"
+    columns:
+        - name: date
+          data_type: DATETIME
+        - name: Total Fossil Fuels Production
+          data_type: float
+        - name: Nuclear Electric Power Production
+          data_type: float
+        - name: Total Renewable Energy Production
+          data_type: float
+        - name: Total Primary Energy Production
+          data_type: float
+        - name: Primary Energy Imports
+          data_type: float
+        - name: Primary Energy Exports
+          data_type: float
+        - name: Primary Energy Net Imports
+          data_type: float
+        - name: Primary Energy Stock Change and Other
+          data_type: float
+        - name: Total Fossil Fuels Consumption
+          data_type: float
+        - name: Nuclear Electric Power Consumption
+          data_type: float
+        - name: Total Renewable Energy Consumption
+          data_type: float
+        - name: Total Primary Energy Consumption
+          data_type: float
+  - name: hdd
+    description: "Heating Degree Days of the United States, missing dates"
+    columns:
+        - name: data
+          data_type: string
