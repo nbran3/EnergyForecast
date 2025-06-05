@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-api_key = os.getenv("1API_KEY")
+api_key = os.getenv("API_KEY")
 project_id = os.getenv("project_id")
 dataset_id = os.getenv("dataset")
 
@@ -32,7 +32,7 @@ def download_econ_data(series):
     df = pd.DataFrame(clean_data)
     return df
 
-def upload_to_bq():
+def run_econ_pipeline():
     for i in series_list:
         
         try:
@@ -44,4 +44,3 @@ def upload_to_bq():
         except Exception as e:
             print(f"Failed to upload {i} to BigQuery: {e}")
 
-upload_to_bq()

@@ -1,0 +1,7 @@
+requests
+os
+pandas
+pandas_gbq
+dotenv
+apache-airflow
+openpyxl

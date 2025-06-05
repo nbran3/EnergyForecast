@@ -2,8 +2,8 @@ import requests
 import os
 import pandas as pd
 import pandas_gbq as gbq
-import openpyxl
 from dotenv import load_dotenv
+import openpyxl
 
 load_dotenv()
 
@@ -22,10 +22,10 @@ def download_file(url, filename):
     print(f"File downloaded as {filename}")
 
 
-def upload_to_gcs():
+def run_energy_pipeline():
     try:
         download_file(CSV_URL, "energy.xlsx")
-        df = pd.read_excel(r".\enegry.xlsx", header=None)
+        df = pd.read_excel(r"energy.xlsx", header=None)
         new_column_headers = df.iloc[10]
         df = df[12:]
         df.columns = new_column_headers
@@ -38,4 +38,4 @@ def upload_to_gcs():
     except Exception as e:
             print(f"Failed to upload Enegry to BigQuery: {e}")
 
-upload_to_gcs()
+

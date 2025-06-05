@@ -23,7 +23,7 @@ def download_weather_data(url, filename):
 
 
 
-def upload_to_gcs():
+def run_weather_pipeline():
     for i in datasets:
         try:
             download_weather_data(f"https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/national/time-series/110/{i}/1/0/1973-2025/data.json", f"{i}.json")
@@ -41,4 +41,3 @@ def upload_to_gcs():
             print(f"Failed to upload {i} to BigQuery: {e}")
             
             
-upload_to_gcs()
