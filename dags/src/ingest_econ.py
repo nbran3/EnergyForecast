@@ -7,12 +7,12 @@ import os
 load_dotenv()
 
 api_key = os.getenv("1API_KEY")
+project_id = os.getenv("project_id")
+dataset_id = os.getenv("dataset")
 
 
 series_list = ['UNRATE', 'CPIAUCSL', 'FEDFUNDS', 'INDPRO', 'MCUMFN']
 
-project_id = 'energy-461918'
-dataset_id = 'staging' 
 
 def download_econ_data(series):
     base_econ_url = (
