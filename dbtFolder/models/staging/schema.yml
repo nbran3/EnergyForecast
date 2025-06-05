@@ -12,7 +12,7 @@ sources:
 
       - name: INDPRO
 
-      - name: MCUMFM
+      - name: MCUMFN
 
       - name: UNRATE
 
@@ -52,8 +52,8 @@ models:
         - name: value
           data_type: string
         - name: series_id
-          data_type: 
-  - name: MCUMFM
+          data_type: string
+  - name: MCUMFN
     description: "Manufacturing Capacity Utilization of the United States"
     columns:
         - name: data

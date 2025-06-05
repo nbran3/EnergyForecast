@@ -6,15 +6,15 @@ source as (
 
 ),
 
-renamed as (
+CPI as (
 
     select
-        date,
-        value,
-        series_id
-
+        cast(date as date) as Date,
+        value as CPI,
+        
     from source
+    order by Date
 
 )
 
-select * from renamed
+select * from CPI
