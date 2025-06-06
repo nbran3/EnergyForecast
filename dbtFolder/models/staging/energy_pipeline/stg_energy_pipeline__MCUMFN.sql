@@ -6,15 +6,17 @@ source as (
 
 ),
 
-renamed as (
+MCUMFN as (
 
     select
-        date,
-        value,
-        series_id
+        cast(date as date) as Date,
+        cast(value as float64) as value
+
+        
 
     from source
+    order by Date
 
 )
 
-select * from renamed
+select * from MCUMFN

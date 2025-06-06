@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: full_energy
+    description: "Energy Dataset"
+    columns:
+        - name: Date
+          data_type: date
+        - name: Total Fossil Fuels Production
+          data_type: float
+        - name: Nuclear Electric Power Production
+          data_type: float
+        - name: Total Renewable Energy Production
+          data_type: float
+        - name: Total Primary Energy Production
+          data_type: float
+        - name: Primary Energy Imports
+          data_type: float
+        - name: Primary Energy Exports
+          data_type: float
+        - name: Primary Energy Net Imports
+          data_type: float
+        - name: Primary Energy Stock Change and Other
+          data_type: float
+        - name: Total Fossil Fuels Consumption
+          data_type: float
+        - name: Nuclear Electric Power Consumption
+          data_type: float
+        - name: Total Renewable Energy Consumption
+          data_type: float
+        - name: Total Primary Energy Consumption
+          data_type: float
+        - name: CPI
+          data_type: float
+        - name : FFR
+          data_type: float
+        - name : INDPRO
+          data_type: float
+        - name: MCUMFN
+          data_type: float
+        - name: UNRATE
+          data_type: float
+        - name: CDD
+          data_type: float
+        - name: HDD
+          data_type: float
+        - name: TAVG
+          data_type: float
+        - name: is_winter
+          data_type: float
+        - name: is_recession
+          data_type: float

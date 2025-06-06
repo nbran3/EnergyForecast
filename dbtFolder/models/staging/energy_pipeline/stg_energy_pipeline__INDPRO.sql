@@ -9,11 +9,11 @@ source as (
 renamed as (
 
     select
-        date,
-        value,
-        series_id
+    cast(date as date) as Date,    
+    cast(value as float64) as value
 
     from source
+    order by Date
 
 )
 

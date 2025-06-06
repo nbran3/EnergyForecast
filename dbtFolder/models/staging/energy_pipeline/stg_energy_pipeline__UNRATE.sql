@@ -10,7 +10,8 @@ renamed as (
 
     select
         cast(date as date) as Date,
-        value as UNRATE,
+        cast(value as float64) as value
+
         
 
     from source

@@ -24,6 +24,8 @@ sources:
 
       - name: tavg
 
+      - name: recession
+
 models:
   - name: CPIAUCSL
     description: "Consumer Price Index of the United States"
@@ -75,7 +77,7 @@ models:
     description: "Cooling Degree Days of the United States, missing dates"
     columns:
         - name: data
-          data_type: 
+          data_type: string
   - name: energy
     description: "Heating Degree Days of the United States, missing dates"
     columns:
@@ -110,3 +112,10 @@ models:
     columns:
         - name: data
           data_type: string
+  - name: recession
+    description: "Binary flags for recessions in the United States"
+    columns:
+      - name: observation_date 
+        data_type: date
+      - name: USREC
+        data_type: integer

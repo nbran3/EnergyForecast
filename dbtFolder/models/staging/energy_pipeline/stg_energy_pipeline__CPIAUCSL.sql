@@ -10,7 +10,7 @@ CPI as (
 
     select
         cast(date as date) as Date,
-        value as CPI,
+        cast(value as float64) as value
         
     from source
     order by Date
