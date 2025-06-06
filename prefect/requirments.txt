@@ -4,4 +4,4 @@ pandas
 pandas_gbq
 dotenv
 apache-airflow
-openpyxl
+openpyxl==3.1.5
