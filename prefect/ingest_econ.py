@@ -11,7 +11,7 @@ project_id = os.getenv("project_id")
 dataset_id = os.getenv("dataset")
 
 
-series_list = ['UNRATE', 'CPIAUCSL', 'FEDFUNDS', 'INDPRO', 'MCUMFN']
+series_list = ['UNRATE', 'CPIAUCSL', 'FEDFUNDS', 'INDPRO', 'MCUMFN', 'USREC']
 
 
 def download_econ_data(series):
