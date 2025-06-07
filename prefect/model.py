@@ -61,11 +61,13 @@ def predict(model, df: pd.DataFrame):
     dmatrix = xgb.DMatrix(df)
     return model.predict(dmatrix)
 
-if __name__ == "__main__":
+def run_full_pipeline() -> pd.DataFrame:
     raw_df = fetch_data(query)
     df = preprocess_data(raw_df)
     model = train_model(df, target_column="total primary energy consumption")
-    preds = predict(model, df.drop(columns=["total primary energy consumption"]))
+    
+    X = df.drop(columns=["total primary energy consumption"])
+    preds = predict(model, X)
 
     results = pd.DataFrame({
         "Date": raw_df["Date"],
@@ -73,8 +75,11 @@ if __name__ == "__main__":
         "Predicted": preds
     })
 
+    return results
+
+if __name__ == "__main__":
+    results = run_full_pipeline()
     results.to_csv("results.csv", index=False)
     print("Results saved to results.csv")
 
 
-predict()
