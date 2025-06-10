@@ -1,17 +1,22 @@
 import pandas as pd
 import xgboost as xgb
 from google.cloud import bigquery
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
+
 project_id = os.getenv("project_id")
-dataset = os.getenv("finalbq_table")
+table = os.getenv("finalbq_table")
+dataset = os.getenv("finalbq_dataset")
+
 
 query = f"""
 SELECT *
-FROM `{project_id}.{dataset}`
+FROM `{project_id}.{table}.{dataset}`
 """
 
 def fetch_data(query: str) -> pd.DataFrame:
@@ -61,7 +66,7 @@ def predict(model, df: pd.DataFrame):
     dmatrix = xgb.DMatrix(df)
     return model.predict(dmatrix)
 
-def run_full_pipeline() -> pd.DataFrame:
+def run_xgboost_pipeline() -> pd.DataFrame:
     raw_df = fetch_data(query)
     df = preprocess_data(raw_df)
     model = train_model(df, target_column="total primary energy consumption")
@@ -74,12 +79,11 @@ def run_full_pipeline() -> pd.DataFrame:
         "Actual": df["total primary energy consumption"],
         "Predicted": preds
     })
+    results.to_csv("xgboost_results.csv", index=False)
 
     return results
 
-if __name__ == "__main__":
-    results = run_full_pipeline()
-    results.to_csv("results.csv", index=False)
-    print("Results saved to results.csv")
+results = run_xgboost_pipeline()
+print("Results saved to xgboost_results.csv")
 
 
