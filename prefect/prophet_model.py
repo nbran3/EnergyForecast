@@ -8,8 +8,6 @@ import os
 
 load_dotenv()
 
-load_dotenv()
-
 
 project_id = os.getenv("project_id")
 table = os.getenv("finalbq_table")
@@ -51,28 +49,10 @@ def run_prophet_pipeline():
     merged = prophet_df.merge(forecast[["ds", "yhat"]], on="ds", how="left")
     merged.rename(columns={"y": "Actual", "yhat": "Predicted"}, inplace=True)
     merged.to_csv("prophet_results.csv", index=False)
-
-
+    
     return merged
 
 results = run_prophet_pipeline()
 print("Results saved to prophet_results.csv")
 
 
-def evaluate_forecast(df: pd.DataFrame):
-    df = df.dropna(subset=["Actual", "Predicted"])
-
-    mae = mean_absolute_error(df["Actual"], df["Predicted"])
-    rmse = np.sqrt(mean_squared_error(df["Actual"], df["Predicted"]))
-    r2 = r2_score(df["Actual"], df["Predicted"])
-    mape = np.mean(np.abs((df["Actual"] - df["Predicted"]) / df["Actual"])) * 100
-
-    print("Evaluation Metrics:")
-    print(f"MAE:  {mae:.4f}")
-    print(f"RMSE: {rmse:.4f}")
-    print(f"R²:   {r2:.4f}")
-    print(f"MAPE: {mape:.2f}%")
-
-    return {"MAE": mae, "RMSE": rmse, "R2": r2, "MAPE": mape}
-
-evaluate_forecast(results)

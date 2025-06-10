@@ -1,5 +1,5 @@
 import pandas as pd
-from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
 from google.cloud import bigquery
@@ -45,7 +45,7 @@ def train_model(df: pd.DataFrame, target_column: str, arima_order: tuple=(5,1,0)
     
     y_train = y.iloc[:split_index]
 
-    model = ARIMA(y_train, order=arima_order)
+    model = SARIMAX(y_train, order=arima_order, seasonal_order=(5,1,0,12))
     model_fit = model.fit()
     return model_fit
     
@@ -53,7 +53,7 @@ def train_model(df: pd.DataFrame, target_column: str, arima_order: tuple=(5,1,0)
 def predict(model, n_steps: int) -> pd.Series:
     return model.forecast(steps=n_steps)
 
-def run_arima_pipeline() -> pd.DataFrame:
+def run_sarima_pipeline() -> pd.DataFrame:
     raw_df = fetch_data(query)
     target_col = "total primary energy consumption"
     
@@ -85,8 +85,7 @@ def run_arima_pipeline() -> pd.DataFrame:
         "Actual": df["total primary energy consumption"],
         "Predicted": preds
     })
-    results.to_csv("arima_results.csv", index=False)
+    results.to_csv("sarima_results.csv", index=False)
 
-results = run_arima_pipeline()
-print("Results saved to arima_results.csv")
-
+results = run_sarima_pipeline()
+print("Results saved to sarima_results.csv")
